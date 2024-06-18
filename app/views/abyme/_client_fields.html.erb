@@ -1,0 +1,16 @@
+<%# Partial for client fields %>
+<div class="d-flex">
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :mail %>
+  <%= f.input :phone_1 %>
+  <%= f.input :phone_2 %>
+  <%= f.input :birthdate, as: :date, start_year: Date.today.year - 90,
+                              end_year: Date.today.year - 3,
+                              order: [:day, :month, :year] %>
+  <%= f.input :notes %>
+  <%= f.input :new_client %>
+
+  <%= f.hidden_field :_destroy %>
+  <%= remove_associated_record content: "X" %>
+</div>
