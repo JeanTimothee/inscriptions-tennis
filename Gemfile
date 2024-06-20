@@ -32,7 +32,15 @@ gem "redis", ">= 4.0.1"
 # Forms nested attributes
 gem 'abyme'
 
-# HTML to PDF
+# Xlsx documents
+gem 'rubyXL'
+
+# PDF generator
+gem "prawn", "~> 2.4" # for generating pdfs
+gem "prawn-table", "~> 0.2.2" # for adding tables to prawn pdfs, -
+# because most reports have tables in them.
+gem "prawn-icon", "~> 3.1" # You may need this if you want to use icons at all
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -64,6 +72,7 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
+  gem "letter_opener"
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 

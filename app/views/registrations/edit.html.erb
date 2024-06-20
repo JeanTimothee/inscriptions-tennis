@@ -1,11 +1,6 @@
-<div class="new-clients">
-  <div class="d-flex">
-    <img class="logo" src="<%= asset_url('TCC_logo.png') %>" alt="Tennis Club Courcelles">
-    <div class="w-100 d-flex justify-content-around align-items-center">
-      <h1>Tennis Club Courcelles</h1>
-    </div>
+<%= simple_form_for @registration do |f| %>
+  <%= f.abyme_for(:clients, button_text:"Ajouter une personne") %>
+  <div class="submit-button-container">
+    <%= f.submit 'Confirmer', class:'submit-button' %>
   </div>
-  <div>
-    <%= render 'form' %>
-  </div>
-</div>
+<% end %>

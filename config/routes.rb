@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   root to: "registrations#new"
-  resources :registrations, only: [:create, :edit, :update, :destroy] do
+  resources :registrations, only: [:show, :create, :edit, :update, :destroy] do
     resources :clients, only: [:create]
+    member do
+      get 'submit'
+    end
   end
   get "up" => "rails/health#show", as: :rails_health_check
 

@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
@@ -16,7 +17,15 @@
 
   <body style="background-image: url(<%= asset_url('image_intro.png')%>)">
     <div class="container" style="background-color:rgba(0,0,0,0.8); color:#EEEDED">
-      <%= yield %>
+      <div class="new-clients">
+        <div class="d-flex">
+          <img class="logo" src="<%= asset_url('TCC_logo.png') %>" alt="Tennis Club Courcelles" style='position:absolute'>
+          <div class="w-100 d-flex justify-content-around align-items-center" style="padding: 58px;">
+            <h1>Tennis Club Courcelles</h1>
+          </div>
+        </div>
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

@@ -1,0 +1,45 @@
+.phones-show {
+  width: 120px!important;
+}
+
+.birthdate-show {
+  width: 100px;
+}
+
+.notes-show {
+  width: 200px;
+}
+
+.names-show {
+  width: 200px!important;
+  overflow: auto!important;
+  display: flex;
+  justify-content: space-between;
+  p {
+    max-width: 95px;
+  }
+}
+
+.mail-show {
+  width: 225px;
+  overflow: auto!important;
+}
+
+.submit-button-show {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.edit-button {
+  display: flex;
+  justify-content: end;
+  div {
+    background: grey;
+    width: fit-content;
+    padding: 4px 12px;
+  }
+}
+
+.client-fields.show {
+  padding-top: 10px;
+}

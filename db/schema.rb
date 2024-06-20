@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_30_132027) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_19_080405) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,12 +20,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_30_132027) do
     t.string "phone_1"
     t.string "phone_2"
     t.text "notes"
-    t.boolean "new_client"
     t.string "mail"
     t.date "birthdate"
     t.bigint "registration_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "re_registration", default: false, null: false
     t.index ["registration_id"], name: "index_clients_on_registration_id"
   end
 

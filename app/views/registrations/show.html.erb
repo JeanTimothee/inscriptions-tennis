@@ -1,1 +1,59 @@
-<%# Build HTML destined to PDF %>
+<% @registration.clients.each do |client|  %>
+  <div class="d-flex justify-content-between client-fields show">
+    <div class="names-show">
+      <p><%= client.first_name %></p>
+      <p><%= client.last_name %></p>
+    </div>
+    <div class='mail-show'>
+      <%= client.mail %>
+    </div>
+    <div class="phones phones-show">
+      <%= client.phone_1 %>
+      <%= client.phone_2 %>
+    </div>
+    <div class="birthdate-show">
+      <%= client.birthdate %>
+    </div>
+    <div class='notes-show'>
+      <% if client.re_registration %>
+        <p>Réinscription ✅</p>
+      <% end %>
+      <p><%= client.notes.nil? ? 'Aucune remarque' : client.notes %></p>
+    </div>
+  </div>
+<% end %>
+<div class="edit-button">
+  <div>Modifier</div>
+</div>
+<div class="submit-button-container">
+  <div class='submit-button submit-button-show' data-bs-toggle="modal" data-bs-target="#rappelModal">Confirmer</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="rappelModal" tabindex="-1" aria-labelledby="rappelModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="rappelModalLabel">Rappel</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Le dossier d'inscription est à envoyer à <strong>Mr Christophe REGIS 4 rue du cheval Moussé, 92000 Nanterre</strong>, ou le déposer dans la boite aux lettres du <strong>TCC : 211/229 rue de Courcelles, 75017 Paris</strong>.</p>
+        <p>Le dossier doit comporter :</p>
+        <ul class="list-group-numbered">
+          <li class="list-group-item"><strong>La fiche d'inscription imprimée.</strong></li>
+          <li class="list-group-item"><strong>Le règlement</strong> (encaissable uniquement après accord sur un créneau horaire.)</li>
+        </ul>
+          <p>Pour tous les nouveaux inscrits, un test d'évaluation est organisé mercredi 4, vendredi 6 ou samedi 7 septembre, sur convocation après inscription.</p>
+          <p>Pour les anciens, n'oubpez pas de contacter Christophe REGIS (06 80 14 34 54) avant le 7 septembre, afin de transmettre vos nouvelles disponibilités (au minimum 3 créneaux horaires).</p>
+      </div>
+      <div class="modal-footer">
+        <div class="submit-button-container">
+          <%= link_to submit_registration_path(@registration) do %>
+            <div class='submit-button submit-button-show'>Générer la fiche d'inscritpion</div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,3 +5,37 @@
 .logo {
   width: 150px;
 }
+
+input.flatpickr-input {
+  width: 138px;
+}
+
+.form-control.text.optional {
+  min-height: 82px!important;
+}
+
+.phones {
+  width: 180px;
+}
+
+.client-fields {
+  border-bottom: 2px solid white;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+
+.submit-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 16px 0px;
+  .submit-button {
+    font-size: 22px;
+    padding: 4px 18px;
+    background-color: #306C33;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    width: fit-content;
+  }
+}

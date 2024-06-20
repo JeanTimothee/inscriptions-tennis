@@ -1,15 +1,22 @@
 <%# Partial for client fields %>
-<div class="d-flex">
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.input :mail %>
-  <%= f.input :phone_1 %>
-  <%= f.input :phone_2 %>
-  <%= f.input :birthdate, as: :date, start_year: Date.today.year - 90,
-                              end_year: Date.today.year - 3,
-                              order: [:day, :month, :year] %>
-  <%= f.input :notes %>
-  <%= f.input :new_client %>
+<div class="d-flex justify-content-between client_fields">
+  <div>
+    <%= f.input :first_name, label:'Prénom' %>
+    <%= f.input :last_name, label:'Nom' %>
+  </div>
+  <%= f.input :mail, label:'E-mail' %>
+  <div class="phones">
+    <%= f.input :phone_1, label:'Téléphone' %>
+    <%= f.input :phone_2, label:'Tél 2' %>
+  </div>
+  <%= f.input :birthdate,
+            label: 'Date de naissance',
+            as: :string,
+            input_html: { data: { controller: "datepicker" } } %>
+  <div>
+    <%= f.input :re_registration, label: 'Reinscription ?' %>
+    <%= f.input :notes, label: 'Remarques' %>
+  </div>
 
   <%= f.hidden_field :_destroy %>
   <%= remove_associated_record content: "X" %>
