@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
+
   root to: "registrations#new"
+
+  devise_for :users
+
   resources :registrations, only: [:show, :create, :edit, :update, :destroy] do
     resources :clients, only: [:create]
     member do
       get 'submit'
     end
   end
+
+  get 'page-perso', to: 'registrations#page_perso', as: :page_perso
+  get 'download', to: 'registrations#download', as: :download
+
   get "up" => "rails/health#show", as: :rails_health_check
 
 end

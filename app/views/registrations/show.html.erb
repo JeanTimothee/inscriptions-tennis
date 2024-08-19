@@ -17,14 +17,18 @@
     <div class='notes-show'>
       <% if client.re_registration %>
         <p>Réinscription ✅</p>
+      <% else %>
+        <p>Inscription</p>
       <% end %>
-      <p><%= client.notes.nil? ? 'Aucune remarque' : client.notes %></p>
+      <p><%= client.notes.empty? ? 'Aucune remarque' : client.notes %></p>
     </div>
   </div>
 <% end %>
-<div class="edit-button">
-  <div>Modifier</div>
-</div>
+<%= link_to edit_registration_path(@registration) do %>
+  <div class="edit-button">
+    <div>Modifier</div>
+  </div>
+<% end %>
 <div class="submit-button-container">
   <div class='submit-button submit-button-show' data-bs-toggle="modal" data-bs-target="#rappelModal">Confirmer</div>
 </div>
