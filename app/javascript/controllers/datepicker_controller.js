@@ -5,7 +5,9 @@ import flatpickr from "flatpickr";
 export default class extends Controller {
   connect() {
     flatpickr(this.element, {
-      dateFormat: "d/m/Y"
-    })
+      altInput: true,
+      altFormat: "d/m/Y",
+      dateFormat: "Y-m-d",
+    });
   }
 }

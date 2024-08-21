@@ -11,8 +11,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'page-perso', to: 'registrations#page_perso', as: :page_perso
-  get 'download', to: 'registrations#download', as: :download
+  get 'page-perso', to: 'pages#page_perso', as: :page_perso
+  get 'download', to: 'pages#download', as: :download
 
   get "up" => "rails/health#show", as: :rails_health_check
 

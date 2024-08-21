@@ -1,8 +1,10 @@
 <%= simple_form_for @registration do |f| %>
   <%= f.abyme_for(:clients) do |abyme| %>
+  <% unless @registration.errors.any? %>
     <%= abyme.new_records %>
   <% end %>
-  <%= f.abyme_for(:clients, button_text:"Ajouter une autre personne") %>
+  <% end %>
+  <%= f.abyme_for(:clients, button_text: "Ajouter une autre personne") %>
   <div class="submit-button-container">
     <%= f.submit "S'inscrire", class:'submit-button' %>
   </div>

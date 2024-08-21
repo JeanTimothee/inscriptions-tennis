@@ -1,7 +1,6 @@
 class RegistrationsController < ApplicationController
   before_action :set_registration, only: [:show, :edit, :update, :destroy, :submit]
   before_action :set_file_path
-  before_action :authenticate_user!, only: [:page_perso]
   # after_action :delete_file, only: [:submit]
 
   require 'rubyXL/convenience_methods'
@@ -31,24 +30,11 @@ class RegistrationsController < ApplicationController
         insert_client(worksheet, client)
       end
     end
-
     workbook.write(@file_path)
 
     pdf = RegistrationPdfGeneratorService.call(@registration)
-
     send_data(pdf, type: 'application/pdf', filename: "inscription_#{@registration.id}.pdf", disposition: 'inline')
 
-  end
-
-  def page_perso
-    unless current_user.admin?
-      redirect_to root_path
-    end
-  end
-
-  def download
-
-    send_file(@file_path, type: "application/xlsx", filename: "inscriptions_#{Date.today.strftime('%d/%m/%Y')}.xlsx", disposition: "inline")
   end
 
   def show
@@ -73,11 +59,6 @@ class RegistrationsController < ApplicationController
 
   private
 
-  def delete_file
-    file_path = "#{Rails.root}/public/inscriptions/inscription_#{@registration.id}.pdf"
-    File.delete(file_path) if File.exist?(file_path)
-  end
-
   def client_already_exists?(worksheet, client)
     first_name_column_index = 2 # Assuming first_name is in column index 2 (adjust as per your sheet)
     last_name_column_index = 3  # Assuming last_name is in column index 3 (adjust as per your sheet)
@@ -89,7 +70,6 @@ class RegistrationsController < ApplicationController
         return true
       end
     end
-
     false
   end
 
@@ -101,13 +81,6 @@ class RegistrationsController < ApplicationController
     @file_path = Rails.root.join('app', 'assets', 'xlsx', 'clients.xlsx')
   end
 
-  def destroy_rows(worksheet)
-    total_rows = worksheet.sheet_data.size
-    # Loop through the rows in reverse order (except the first one) and delete them
-    (total_rows - 1).downto(1) do |index|
-      worksheet.delete_row(index)
-    end
-  end
 
   def insert_client(worksheet, client)
     data = [
@@ -135,6 +108,20 @@ class RegistrationsController < ApplicationController
       clients_attributes: [
         :id, :first_name, :last_name, :phone_1, :phone_2, :birthdate, :mail, :notes, :new_client, :re_registration, :_destroy
       ]
-    )
+      )
   end
+
+  # def destroy_rows(worksheet)
+  #   total_rows = worksheet.sheet_data.size
+  #   # Loop through the rows in reverse order (except the first one) and delete them
+  #   (total_rows - 1).downto(1) do |index|
+  #     worksheet.delete_row(index)
+  #   end
+  # end
+
+  # def delete_file
+  #   file_path = "#{Rails.root}/public/inscriptions/inscription_#{@registration.id}.pdf"
+  #   File.delete(file_path) if File.exist?(file_path)
+  # end
+
 end
