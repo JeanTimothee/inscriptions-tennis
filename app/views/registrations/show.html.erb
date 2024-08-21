@@ -52,10 +52,11 @@
           <p>Pour les anciens, n'oubliez pas de contacter Christophe REGIS (06 80 14 34 54) avant le 7 septembre, afin de transmettre vos nouvelles disponibilités (au minimum 3 créneaux horaires).</p>
       </div>
       <div class="modal-footer">
-        <div class="submit-button-container">
-          <%= link_to submit_registration_path(@registration) do %>
+        <div class="submit-button-container" data-controller="open-in-new-tab">
+          <%= link_to submit_registration_path(@registration), target: "_blank", data: { action: "click->open-in-new-tab#followLink" } do %>
             <div class='submit-button submit-button-show'>Générer la fiche d'inscription</div>
           <% end %>
+          <a href="http://www.tennisclubcourcelles.fr", data-open-in-new-tab-target="currentTabLink", style="display: none;">Back to TCC</a>
         </div>
       </div>
     </div>
